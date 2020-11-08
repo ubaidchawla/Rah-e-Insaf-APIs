@@ -1,0 +1,14 @@
+const mongoose = require('mongoose');
+var ExperienceSchema= mongoose.Schema(
+    {
+    occupation:{type: String, required: true},
+    start_date: {type: Date, required: true},
+    end_date: {type: Date, required: true},
+    lawyer :{       
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Lawyer'
+    },
+    date: { type: Date, default: Date.now }
+    });
+    
+    module.exports = mongoose.model('Experience', ExperienceSchema);

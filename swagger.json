@@ -1,0 +1,1455 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Rah-e-Insaf API Documentation",
+        "description": "An easy to follow API Documentation for Rah-e-Insaf Project",
+        "Contact": {
+            "name": "Ubaid ur Rehman",
+            "email": "hafizubaidchawla@outlook.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000/",
+            "description": "Local Development Server"
+        },
+        {
+            "url": "http://rah-e-insaf-env.us-east-1.elasticbeanstalk.com/",
+            "description": "AWS Development Server"
+        }
+
+    ],
+    "apis": ["./routes/*.js"],
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "APIs for User Authentication"
+        },
+
+        {
+            "name": "Posts",
+            "description": "APIs related to Posts"
+        },
+
+        {
+            "name": "Laws",
+            "description": "APIs related to Laws"
+        },
+
+        {
+            "name": "Lawyers",
+            "description": "APIs related to Lawyers"
+        },
+
+        {
+            "name": "Bookmarks",
+            "description": "APIs related to Bookmarks"
+        },
+
+        {
+            "name": "Appraisals",
+            "description": "APIs related to Appraisals of the Lawyer"
+        },
+
+        {
+            "name": "Consultations",
+            "description": "APIs related to Consultations with the Lawyer"
+        },
+
+        {
+            "name": "Lawsuits",
+            "description": "APIs related to Lawsuits"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/register/phone": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register New User Using phone Authentication",
+                "requestBody": {
+                    "description": "Phone Number and Channel",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/login/phone": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login Using phone Authentication",
+                "requestBody": {
+                    "description": "Phone Number and Channel",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/verify": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register New User Using phone Authentication",
+                "requestBody": {
+                    "description": "User Basic Details Registration",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Users"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/facebook": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Authentication Using Facebook",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/auth/google": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Authentication Using Google",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/lawyers": {
+            "get": {
+                "tags": [
+                    "Lawyers"
+                ],
+                "summary": "Get all Lawyers",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/register/lawyer": {
+            "post": {
+                "tags": [
+                    "Lawyers"
+                ],
+                "summary": "Enter Lawyer Details to Complete Registration",
+                "requestBody": {
+                    "description": "Details of the Lawyer",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/lawyerdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/lawyer/:lawyerId/bookmark": {
+            "post": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Bookmark a lawyer",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/bookmark/lawyers": {
+            "get": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Get Bookmarked lawyers",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/bookmark/lawyer/:id": {
+            "delete": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Removed Bookmarked lawyer",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/lawyer/:lawyerId/follow": {
+            "post": {
+                "tags": [
+                    "Follow/Unfollow"
+                ],
+                "summary": "Follow a lawyer",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/following": {
+            "get": {
+                "tags": [
+                    "Follow/Unfollow"
+                ],
+                "summary": "Get User Followings",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/unfollow/lawyer/:id": {
+            "delete": {
+                "tags": [
+                    "Follow/Unfollow"
+                ],
+                "summary": "Unfollow lawyer",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/appraisal/:lawyerId/create": {
+            "post": {
+                "tags": [
+                    "Appraisals"
+                ],
+                "summary": "Enter Appraisal content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/appraisaldetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/appraisals": {
+            "get": {
+                "tags": [
+                    "Appraisals"
+                ],
+                "summary": "Get all appraisals",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/appraisal/:lawyerId": {
+            "get": {
+                "tags": [
+                    "Appraisals"
+                ],
+                "summary": "Get appraisal Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/consultation/:lawyerId/create": {
+            "post": {
+                "tags": [
+                    "Consultations"
+                ],
+                "summary": "Enter Consultation content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/consultationdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/consultations": {
+            "get": {
+                "tags": [
+                    "Consultations"
+                ],
+                "summary": "Get all Consultations",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/consultation/:lawyerId": {
+            "get": {
+                "tags": [
+                    "Consultations"
+                ],
+                "summary": "Get Consultation Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/consultation/:id": {
+            "delete": {
+                "tags": [
+                    "Consultations"
+                ],
+                "summary": "Remove Consultation",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/consultation/reject/:consultationId": {
+            "delete": {
+                "tags": [
+                    "Consultations"
+                ],
+                "summary": "reject Consultation Request",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/consultation/approve/:consultationId": {
+            "put": {
+                "tags": [
+                    "Consultations"
+                ],
+                "summary": "Approve Consultation Request",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/posts/:lawyerId": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get Lawyer Specific Posts",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/post/:lawyerId/create": {
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Enter Post Details to add a post",
+
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/definitions/postdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get all Posts",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/post/:postId/bookmark": {
+            "post": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Bookmark a Post",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/bookmark/posts": {
+            "get": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Get Bookmarked Posts",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/post/:postId": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get Post Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/post/:id": {
+            "delete": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Delete Post",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/bookmark/post/:id": {
+            "delete": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Removed Bookmarked Post",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/comment/:postId/create": {
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Enter Comment content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/definitions/commentdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/comment/:hearingId/create": {
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Enter Comment content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/commentdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/comment/:lawsuitId/create": {
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Enter Comment content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/commentdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/comment/:id": {
+            "delete": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Delete comment",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        
+        "/lawdetails": {
+            "get": {
+                "tags": [
+                    "Laws"
+                ],
+                "summary": "Get Law Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        
+        "/law/:lawId": {
+            "get": {
+                "tags": [
+                    "Laws"
+                ],
+                "summary": "Get Law Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/law/:lawId/bookmark": {
+            "post": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Bookmark a Law",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/bookmark/laws": {
+            "get": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Get Bookmarked Laws",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/bookmark/law/:id": {
+            "delete": {
+                "tags": [
+                    "Bookmarks"
+                ],
+                "summary": "Removed Bookmarked Law",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/laws": {
+            "get": {
+                "tags": [
+                    "Laws"
+                ],
+                "summary": "Get all Laws",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/law/categories": {
+            "get": {
+                "tags": [
+                    "Laws"
+                ],
+                "summary": "Get All Law Categories",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/law/subcategories": {
+            "get": {
+                "tags": [
+                    "Laws"
+                ],
+                "summary": "Get All Law Sub Categories",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+       
+        "/feed": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get paginated homepage feed",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        
+
+        "/lawsuit/create": {
+            "post": {
+                "tags": [
+                    "Lawsuits"
+                ],
+                "summary": "Enter Lawsuit content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/definitions/lawsuitdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/lawsuit/:id": {
+            "post": {
+                "tags": [
+                    "Lawsuits"
+                ],
+                "summary": "Update Lawsuit content",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/lawsuitdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/lawsuits": {
+            "get": {
+                "tags": [
+                    "Lawsuits"
+                ],
+                "summary": "Get all Lawsuits",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/lawsuits/download": {
+            "get": {
+                "tags": [
+                    "Lawsuits"
+                ],
+                "summary": "Download Lawsuits",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/lawsuit/:lawsuitId": {
+            "get": {
+                "tags": [
+                    "Lawsuits"
+                ],
+                "summary": "Get Lawsuit Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/hearing/:id/create": {
+            "post": {
+                "tags": [
+                    "Hearings"
+                ],
+                "summary": "Enter Hearing Details",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/hearingdetails"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/hearings": {
+            "get": {
+                "tags": [
+                    "Hearings"
+                ],
+                "summary": "Get all Hearings",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+
+        "/hearing/:hearingId": {
+            "get": {
+                "tags": [
+                    "Hearings"
+                ],
+                "summary": "Get Hearing Details",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/hearings/:lawsuitId": {
+            "get": {
+                "tags": [
+                    "Hearings"
+                ],
+                "summary": "Get Lawsuit Hearings",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        },
+        "/hearing/:id": {
+            "delete": {
+                "tags": [
+                    "Hearings"
+                ],
+                "summary": "Delete Hearing",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed"
+                    }
+                }
+            }
+        }
+
+    },
+
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "phonenumber": {
+                    "type": "number"
+                },
+                "channel": {
+                    "type": "string"
+                }
+            }
+        },
+        "Users": {
+            "type": "object",
+            "properties": {
+                "name":{
+                    "type": "string"
+                },
+                "city":{
+                    "type": "string"
+                },
+                "phonenumber": {
+                    "type": "number"
+                },
+                "code": {
+                    "type": "number"
+                }
+            }
+        },
+        
+        "lawyerdetails": {
+            "type": "object",
+            "properties": {
+                "tier": {
+                    "type": "string"
+                },
+                "overall_experience": {
+                    "type": "number"
+                },
+                "consultation_fee": {
+                    "type": "number"
+                },
+                "introduction": {
+                    "type": "string"
+                },
+                "bar_council": {
+                    "type": "string"
+                }
+            }
+        },
+        "logindetails": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+
+        "postdetails": {
+            "type": "object",
+            "consumes":"multipart/form-data",
+            "mediaType":"multipart/form-data",
+            "properties": {
+                "description":{
+                    "type": "string"
+                },
+                "attachment":{
+                    "in": "formData",
+                    "type":"file"
+                } 
+            }
+        },
+
+        "commentdetails": {
+            "type": "object",
+            "consumes":"multipart/form-data",
+            "mediaType":"multipart/form-data",
+            "properties": {
+                "content":{
+                    "type": "String"
+                },
+                "attachment":{
+                    "in": "formData",
+                    "type":"file"
+                } 
+            }
+        },
+        "lawsuitdetails":{
+
+            "type": "object",
+            "consumes":"multipart/form-data",
+            "mediaType":"multipart/form-data",
+            "properties": {
+                "title":{
+                    "type": "String"
+                },
+                "current_status":{
+                    "type": "String"
+                },
+                "role_in_case":{
+                    "type": "String"
+                },
+                "opponent":{
+                    "type": "String"
+                },
+                "penal_codes_applied":{
+                    "type": "String"
+                },
+                "description":{
+                    "type": "String"
+                },
+                "lawsuit_location":{
+                    "type": "String"
+                },
+                "filing_date":{
+                    "type": "Date"
+                },
+                "attachment":{
+                    "in": "formData",
+                    "type":"file"
+                } 
+    
+            }
+        },
+
+        "appraisaldetails": {
+            "type": "object",
+            "properties": {
+                "rating":{
+                    "type": "Number"
+                },
+                "text":{
+                    "type": "String"
+                }
+            }
+        },
+
+        "consultationdetails": {
+            "type": "object",
+            "properties": {
+                "time":{
+                    "type": "Date"
+                }
+            }
+        },
+        "hearingdetails": {
+            "type": "object",
+            "properties": {
+                "time":{
+                    "type": "Date"
+                },
+                "hearing_location":{
+                    "type": "String"
+                },
+                "hearing_result": {
+                    "type": "String"
+                }
+            }
+        }
+    }
+}
