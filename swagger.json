@@ -261,7 +261,7 @@
                 }
             }
         },
-        "/lawyer/:lawyerId/bookmark": {
+        "/lawyer/{lawyerId}/bookmark": {
             "post": {
                 "tags": [
                     "Bookmarks"
@@ -269,6 +269,15 @@
                 "summary": "Bookmark a lawyer",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to get BookMarks"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -300,7 +309,7 @@
                 }
             }
         },
-        "/bookmark/lawyer/:id": {
+        "/bookmark/lawyer/{id}": {
             "delete": {
                 "tags": [
                     "Bookmarks"
@@ -308,6 +317,15 @@
                 "summary": "Removed Bookmarked lawyer",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to get Remove Bookmark"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -320,7 +338,7 @@
             }
         },
 
-        "/lawyer/:lawyerId/follow": {
+        "/lawyer/{lawyerId}/follow": {
             "post": {
                 "tags": [
                     "Follow/Unfollow"
@@ -328,6 +346,15 @@
                 "summary": "Follow a lawyer",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to get BookMarks"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -359,7 +386,7 @@
                 }
             }
         },
-        "/unfollow/lawyer/:id": {
+        "/unfollow/lawyer/{id}": {
             "delete": {
                 "tags": [
                     "Follow/Unfollow"
@@ -367,6 +394,15 @@
                 "summary": "Unfollow lawyer",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to remove follow"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -378,7 +414,7 @@
                 }
             }
         },
-        "/appraisal/:lawyerId/create": {
+        "/appraisal/{lawyerId}/create": {
             "post": {
                 "tags": [
                     "Appraisals"
@@ -394,6 +430,15 @@
                         }
                     }
                 },
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to add Appraisals"
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -420,6 +465,7 @@
                 "produces": [
                     "application/json"
                 ],
+                
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -431,7 +477,7 @@
             }
         },
 
-        "/appraisal/:lawyerId": {
+        "/appraisal/{lawyerId}": {
             "get": {
                 "tags": [
                     "Appraisals"
@@ -440,6 +486,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to get Appraisals"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -451,7 +506,7 @@
             }
         },
 
-        "/consultation/:lawyerId/create": {
+        "/consultation/{lawyerId}/create": {
             "post": {
                 "tags": [
                     "Consultations"
@@ -467,6 +522,15 @@
                         }
                     }
                 },
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to Request Consultation"
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -504,7 +568,7 @@
             }
         },
 
-        "/consultation/:lawyerId": {
+        "/consultation/{lawyerId}": {
             "get": {
                 "tags": [
                     "Consultations"
@@ -513,6 +577,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to get Consultations"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -523,7 +596,7 @@
                 }
             }
         },
-        "/consultation/:id": {
+        "/consultation/{id}": {
             "delete": {
                 "tags": [
                     "Consultations"
@@ -532,6 +605,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to Remove Consultation"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -542,7 +624,7 @@
                 }
             }
         },
-        "/consultation/reject/:consultationId": {
+        "/consultation/reject/{consultationId}": {
             "delete": {
                 "tags": [
                     "Consultations"
@@ -551,6 +633,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "consultationId",
+                      "type":"string",
+                      "required": true,
+                      "description": "consultation ID to reject consultation"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -561,7 +652,7 @@
                 }
             }
         },
-        "/consultation/approve/:consultationId": {
+        "/consultation/approve/{consultationId}": {
             "put": {
                 "tags": [
                     "Consultations"
@@ -570,6 +661,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "consultationId",
+                      "type":"string",
+                      "required": true,
+                      "description": "consultation ID to approve consultation"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -580,7 +680,7 @@
                 }
             }
         },
-        "/posts/:lawyerId": {
+        "/posts/{lawyerId}": {
             "get": {
                 "tags": [
                     "Posts"
@@ -589,6 +689,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to get Posts"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -599,7 +708,7 @@
                 }
             }
         },
-        "/post/:lawyerId/create": {
+        "/post/{lawyerId}/create": {
             "post": {
                 "tags": [
                     "Posts"
@@ -618,6 +727,15 @@
                 },
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawyerId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Lawyer ID to Create Post"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -652,7 +770,7 @@
             }
         },
 
-        "/post/:postId/bookmark": {
+        "/post/{postId}/bookmark": {
             "post": {
                 "tags": [
                     "Bookmarks"
@@ -660,6 +778,15 @@
                 "summary": "Bookmark a Post",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "postId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Post ID to get Bookmarked Posts"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -691,7 +818,7 @@
                 }
             }
         },
-        "/post/:postId": {
+        "/post/{postId}": {
             "get": {
                 "tags": [
                     "Posts"
@@ -699,6 +826,15 @@
                 "summary": "Get Post Details",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "postId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Post ID to get specific Post"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -711,7 +847,7 @@
             }
         },
 
-        "/post/:id": {
+        "/post/{id}": {
             "delete": {
                 "tags": [
                     "Posts"
@@ -720,6 +856,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to Delete Post"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -730,7 +875,7 @@
                 }
             }
         },
-        "/bookmark/post/:id": {
+        "/bookmark/post/{id}": {
             "delete": {
                 "tags": [
                     "Bookmarks"
@@ -739,6 +884,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to remove post bookmark"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -749,7 +903,7 @@
                 }
             }
         },
-        "/comment/:postId/create": {
+        "/comment/{postId}/create": {
             "post": {
                 "tags": [
                     "Comments"
@@ -768,6 +922,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "postId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Post ID to add comment"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -781,7 +944,7 @@
                 }
             }
         },
-        "/comment/:hearingId/create": {
+        "/comment/{hearingId}/create": {
             "post": {
                 "tags": [
                     "Comments"
@@ -800,6 +963,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "hearingId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Add comment to hearing"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -813,7 +985,7 @@
                 }
             }
         },
-        "/comment/:lawsuitId/create": {
+        "/comment/{lawsuitId}/create": {
             "post": {
                 "tags": [
                     "Comments"
@@ -832,6 +1004,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawsuitId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Add comment to Lawsuit"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -845,7 +1026,7 @@
                 }
             }
         },
-        "/comment/:id": {
+        "/comment/{id}": {
             "delete": {
                 "tags": [
                     "Comments"
@@ -853,6 +1034,15 @@
                 "summary": "Delete comment",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to Delete comment"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -885,7 +1075,7 @@
             }
         },
         
-        "/law/:lawId": {
+        "/law/{lawId}": {
             "get": {
                 "tags": [
                     "Laws"
@@ -893,6 +1083,15 @@
                 "summary": "Get Law Details",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Law get specific Law"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -944,7 +1143,7 @@
                 }
             }
         },
-        "/bookmark/law/:id": {
+        "/bookmark/law/{id}": {
             "delete": {
                 "tags": [
                     "Bookmarks"
@@ -952,6 +1151,15 @@
                 "summary": "Removed Bookmarked Law",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to remove law bookmark"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1078,8 +1286,8 @@
                 }
             }
         },
-        "/lawsuit/:id": {
-            "post": {
+        "/lawsuit/{id}": {
+            "put": {
                 "tags": [
                     "Lawsuits"
                 ],
@@ -1096,6 +1304,15 @@
                 },
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to Update Lawsuit"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1149,7 +1366,7 @@
                 }
             }
         },
-        "/lawsuit/:lawsuitId": {
+        "/lawsuit/{lawsuitId}": {
             "get": {
                 "tags": [
                     "Lawsuits"
@@ -1157,6 +1374,15 @@
                 "summary": "Get Lawsuit Details",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawsuitId",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to get Specific Lawsuit"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1168,12 +1394,21 @@
                 }
             }
         },
-        "/hearing/:id/create": {
+        "/hearing/{id}/create": {
             "post": {
                 "tags": [
                     "Hearings"
                 ],
                 "summary": "Enter Hearing Details",
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to Create Hearing"
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1221,7 +1456,7 @@
             }
         },
 
-        "/hearing/:hearingId": {
+        "/hearing/{hearingId}": {
             "get": {
                 "tags": [
                     "Hearings"
@@ -1230,6 +1465,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "hearingId",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to get Specific hearing"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1240,7 +1484,7 @@
                 }
             }
         },
-        "/hearings/:lawsuitId": {
+        "/hearings/{lawsuitId}": {
             "get": {
                 "tags": [
                     "Hearings"
@@ -1249,6 +1493,15 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "lawsuitId",
+                      "type":"string",
+                      "required": true,
+                      "description": "Hearings for Specific Lawsuit"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1259,7 +1512,7 @@
                 }
             }
         },
-        "/hearing/:id": {
+        "/hearing/{id}": {
             "delete": {
                 "tags": [
                     "Hearings"
@@ -1267,6 +1520,15 @@
                 "summary": "Delete Hearing",
                 "produces": [
                     "application/json"
+                ],
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name": "id",
+                      "type":"string",
+                      "required": true,
+                      "description": "ID to Delete Hearing"
+                    }
                 ],
                 "responses": {
                     "200": {

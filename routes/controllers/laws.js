@@ -34,22 +34,22 @@ module.exports = {
       
 },
 findOne : async (req, res) => {
-  Law.findById(req.params.id)
+  Law.findById(req.params.lawId)
   .then(law => {
   if(!law) {
    return res.status(404).send({
-   message: "law not found with id " + req.params.id
+   message: "law not found with id " + req.params.lawId 
  });
 }
  res.send(law);
 }).catch(err => {
   if(err.kind === 'ObjectId') {
     return res.status(404).send({
-    message: "law not found with id " + req.params.id
+    message: "law not found with id " + req.params.lawId 
   });
 }
 return res.status(500).send({
-  message: "Error getting law with id " + req.params.id
+  message: "Error getting law with id " + req.params.lawId 
 });
 });
 },
@@ -156,7 +156,7 @@ return res.status(500).send({
     
           const law =await Law.findOne({_id:req.params.lawId});
     
-          law.bookmarks.push("5f33d9cb3e5793722bffa835");
+          law.bookmarks.push(req.user._id);
           await law.save().then(data => {
             res.send(data);
           }).catch(err => {
@@ -168,7 +168,7 @@ return res.status(500).send({
       },
   
       bookmarked : async (req,res)=>{
-        Law.find({"bookmarks": "5f33d9cb3e5793722bffa835"}).sort([['date', -1]])
+        Law.find({"bookmarks": req.user._id}).sort([['date', -1]])
           .then(laws => {
             const page = parseInt(req.query.page) || 1;
             const limit = parseInt(req.query.limit) || 4;

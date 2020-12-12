@@ -21,14 +21,14 @@ module.exports = {
       // Save category in the database
       await sub_category.save()
       .then(data => {
+        category.subcategories.push(data._id);
         res.send(data);
       }).catch(err => {
         res.status(500).send({
         message: err.message || "Something went wrong while adding a new sub_category."
       });
       });
-      category.subcategories.push(category._id);
-      await category.save();
+      category.save();
 },
 
   findAll : async (req, res) => {

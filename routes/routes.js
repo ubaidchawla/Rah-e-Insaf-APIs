@@ -286,8 +286,12 @@ router.post('/verify', authController.verify);
 //---------------------------------------------------------------------------------------------------
     // Test Routes
     router.get('/profile',(req,res)=>{
-        res.send('Login Successful by '+req.user.google.name);
-        
+        if (req.user.google.name)
+            res.send('Login Successful by '+req.user.google.name+"And User id is "+req.user._id);
+        else if (req.user.facebook.name)
+            res.send('Login Successful by '+req.user.facebook.name);
+        else (req.user.local.name)
+        res.send('Login Successful by '+req.user.local.name);
     })
     router.get('/check',(req,res)=>{
         console.log(req.user._id)
