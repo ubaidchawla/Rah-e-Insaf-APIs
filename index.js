@@ -14,6 +14,7 @@ var session = require('express-session');
 const dbConfig = require('./config/db.config.js');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
     useUnifiedTopology: true,
@@ -47,8 +48,6 @@ app.use(cors({origin:[ 'http://localhost:5000/', 'http://localhost:8080/', 'http
 // required for passport
 app.use(session({
   secret: 'fkjshdaurgtup',
-  // name: 'cookie_name',
-  // proxy: true,
   resave: false,
   saveUninitialized: false
 })
@@ -59,9 +58,7 @@ app.use(passport.session()); // persistent login sessions
 
 app.get('/protected', (req, res) => {
   if (req.user) {
-    res.send(`You are seeing this because you have a valid session.
-    	Your id is ${req.user._id}.
-    `)
+    res.send(`You are seeing this because you have a valid session.`)
   } else {
     res.status(401).send('Authrization failed! Please login');
   }
@@ -72,12 +69,10 @@ app.get('/protected', (req, res) => {
 4. Logout
 =============
 */
-app.all('/logout', (req, res) => {
-  delete req.user; // any of these works
-  	req.destroy(); // any of these works
+app.get("/logout", function(req, res){
+    req.logout();
     res.status(200).send('logout successful')
-})
-
+});
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

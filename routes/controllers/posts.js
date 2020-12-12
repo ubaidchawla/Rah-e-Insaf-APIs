@@ -25,34 +25,33 @@ module.exports = {
       await post.save()
       .then(data => {
         res.send(data);
+        lawyer.posts.push(data._id);
       }).catch(err => {
         res.status(500).send({
         message: err.message || "Something went wrong while creating new post."
       });
       });
-
-      lawyer.posts.push(post._id);
       await lawyer.save();
       
 },
 
 findOne : async (req, res) => {
-  Post.findById(req.params.id)
+  Post.findById(req.params.postId )
   .then(post => {
   if(!post) {
    return res.status(404).send({
-   message: "post not found with id " + req.params.id
+   message: "post not found with id " + req.params.postId
  });
 }
  res.send(post);
 }).catch(err => {
   if(err.kind === 'ObjectId') {
     return res.status(404).send({
-    message: "post not found with id " + req.params.id
+    message: "post not found with id " + req.params.postId 
   });
 }
 return res.status(500).send({
-  message: "Error getting post with id " + req.params.id
+  message: "Error getting post with id " + req.params.postId
 });
 });
 },
@@ -107,7 +106,9 @@ return res.status(500).send({
     }
     
     },
+    display_user: async (req,res)=>{
 
+    },
     lawyerPosts : async (req,res)=>{
       Post.find({"lawyer": req.params.lawyerId}).sort([['date', -1]])
         .then(posts => {
@@ -127,16 +128,9 @@ return res.status(500).send({
       
     },
 
-    bookmark : async (req, res) => {
-      if(!req.body) {
-          return res.status(400).send({
-          message: "Please fill all required field"
-        });
-        }
-  
+    bookmark : async (req, res) => {  
         const post =await Post.findOne({_id:req.params.postId});
-  
-        post.bookmarks.push("5f33d9cb3e5793722bffa835");
+        post.bookmarks.push(req.user._id);
         await post.save().then(data => {
           res.send(data);
         }).catch(err => {
@@ -144,11 +138,10 @@ return res.status(500).send({
           message: err.message || "Something went wrong while bookmarking a post."
         });
         });
-        
     },
 
     bookmarked : async (req,res)=>{
-      Post.find({"bookmarks": "5f33d9cb3e5793722bffa835"}).sort([['date', -1]])
+      Post.find({"bookmarks": req.user._id}).sort([['date', -1]])
         .then(posts => {
           const page = parseInt(req.query.page) || 1;
           const limit = parseInt(req.query.limit) || 4;

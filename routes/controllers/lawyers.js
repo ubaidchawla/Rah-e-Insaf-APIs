@@ -129,7 +129,7 @@ findOne : async (req, res) => {
 
       const lawyer =await Lawyer.findOne({_id:req.params.lawyerId});
 
-      lawyer.bookmarks.push("5f33d9cb3e5793722bffa835");
+      lawyer.bookmarks.push(req.user._id);
       await lawyer.save().then(data => {
         res.send(data);
       }).catch(err => {
@@ -140,7 +140,7 @@ findOne : async (req, res) => {
       
 },
 bookmarked : async (req,res)=>{
-  Lawyer.find({"bookmarks": "5f33d9cb3e5793722bffa835"}).sort([['date', -1]])
+  Lawyer.find({"bookmarks": req.user._id}).sort([['date', -1]])
     .then(lawyers => {
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 4;
@@ -177,7 +177,7 @@ bookmarkremove : async (req, res) => {
 
       const lawyer =await Lawyer.findOne({_id:req.params.lawyerId});
 
-      lawyer.followers.push("5f33d9cb3e5793722bffa835");
+      lawyer.followers.push(req.user._id);
       await lawyer.save().then(data => {
         res.send(data);
       }).catch(err => {
@@ -199,7 +199,7 @@ unfollow : async (req, res) => {
     });
   },
   following : async (req,res)=>{
-    Lawyer.find({"followers": "5f33d9cb3e5793722bffa835"}).sort([['date', -1]])
+    Lawyer.find({"followers": req.user._id}).sort([['date', -1]])
       .then(lawyers => {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 4;
