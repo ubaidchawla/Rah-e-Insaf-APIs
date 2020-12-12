@@ -17,6 +17,10 @@
         {
             "url": "http://rah-e-insaf-env.us-east-1.elasticbeanstalk.com/",
             "description": "AWS Development Server"
+        },
+	{
+            "url": "https://rah-e-insaf-apis.uc.r.appspot.com/",
+            "description": "Google Cloud  Development Server"
         }
 
     ],
